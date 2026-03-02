@@ -6,8 +6,6 @@ import { Eye, RotateCcw, X, ZoomIn, ZoomOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { formatCurrency } from "../utils/format-currency";
-import ProductWhatsAppButton from "./ProductWhatsAppButton";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
   const [isImageOpen, setIsImageOpen] = useState(false)
@@ -198,7 +196,8 @@ const ProductCard = ({ product }: { product: ProductType }) => {
           </div>
         )}
       </div>
-      );
+    </div>
+  );
 };
 
-      export default ProductCard;
+export default ProductCard;
