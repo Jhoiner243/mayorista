@@ -4,7 +4,6 @@ import { Home, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
-import AnnouncementBanner from "./AnnouncementBanner";
 import Sections from "./sections";
 
 const Navbar = () => {
@@ -28,8 +27,6 @@ const Navbar = () => {
 
   return (
     <div>
-      <AnnouncementBanner />
-
       {/* Barra principal */}
       <nav className="w-full flex items-center justify-between px-4 sm:px-6 md:px-8 mx-auto max-w-6xl py-3">
         {/* Logo */}
