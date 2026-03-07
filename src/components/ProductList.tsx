@@ -1,7 +1,8 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef } from "react";
 import { useInfiniteProducts } from "../hooks/use-infinity-scroll";
-import useFilterStore from "../stores/filterStore";
+import useFilterStore, { GenderFilter } from "../stores/filterStore";
 import Filter from "./Filter";
 import LoadingSpinner from "./LoadingSpinner";
 import ProductCard from "./ProductCard";
@@ -14,15 +15,20 @@ const ProductList = ({ category, params }: { category: string, params: "homepage
 
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
+  const searchParams = useSearchParams();
+  const genderParam = searchParams.get("gender") as GenderFilter | null;
+
   useEffect(() => {
-    if(params === "homepage") {
-      setGender("All")
+    if (params === "homepage") {
+      setGender("All");
+    } else if (genderParam) {
+      setGender(genderParam);
     }
-  }, [params, setGender])
+  }, [params, setGender, genderParam]);
 
   useEffect(() => {
     if (!loaderRef.current) return;
-    
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && hasMore && !isValidating) {
@@ -36,10 +42,10 @@ const ProductList = ({ category, params }: { category: string, params: "homepage
     return () => observer.disconnect();
   }, [hasMore, isValidating, size, setSize]);
 
-// Aplicar solo la clasificación (el filtrado ahora se realiza en el backend)
+  // Aplicar solo la clasificación (el filtrado ahora se realiza en el backend)
   const sortedProducts = useMemo(() => {
     if (!data) return [];
-    
+
     const products = data.flatMap((page) => page.items);
     let sorted = [...products];
 
@@ -57,9 +63,9 @@ const ProductList = ({ category, params }: { category: string, params: "homepage
   if (isLoading) {
     return (
       <div className="w-full mx-auto sm:px-0 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
-        { params === "homepage" ? null : (
+        {params === "homepage" ? null : (
           <div className="justify-items-end">
-          <Filter />
+            <Filter />
           </div>
         )
         }
@@ -73,9 +79,9 @@ const ProductList = ({ category, params }: { category: string, params: "homepage
   if (error) {
     return (
       <div className="w-full mx-auto sm:px-0 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
-        { params === "homepage" ? null : (
+        {params === "homepage" ? null : (
           <div className="justify-items-end">
-          <Filter />
+            <Filter />
           </div>
         )
         }
@@ -88,13 +94,13 @@ const ProductList = ({ category, params }: { category: string, params: "homepage
 
   return (
     <div className="w-full mx-auto sm:px-0 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
-        { params === "homepage" ? null : (
-          <div className="justify-items-end p-2">
+      {params === "homepage" ? null : (
+        <div className="justify-items-end p-2">
           <Filter />
-          </div>
-        )
-        }
-      
+        </div>
+      )
+      }
+
       {sortedProducts.length === 0 && !isValidating ? (
         <div className="flex justify-center items-center h-64">
           <div className="text-center">
@@ -114,7 +120,7 @@ const ProductList = ({ category, params }: { category: string, params: "homepage
               </div>
             ))}
           </div>
-          
+
           {/* Load More Indicator */}
           {hasMore && (
             <div ref={loaderRef} className="flex justify-center items-center py-8">
@@ -126,7 +132,7 @@ const ProductList = ({ category, params }: { category: string, params: "homepage
             </div>
           )}
 
-          
+
         </>
       )}
     </div>
