@@ -55,16 +55,14 @@ const Navbar = () => {
         </button>
       </nav>
 
-      {/* Secciones de categorías — desktop siempre visible */}
-      <div className="hidden md:block">
-        <Suspense fallback={
-          <div className="flex justify-center items-center p-3 border-b border-t border-gray-200 w-full">
-            <div className="text-sm text-gray-500">Cargando...</div>
-          </div>
-        }>
-          <Sections onLinkClick={() => setIsOpen(false)} />
-        </Suspense>
-      </div>
+      {/* Secciones de categorías — siempre visible */}
+      <Suspense fallback={
+        <div className="flex justify-center items-center p-3 border-b border-t border-gray-200 w-full">
+          <div className="text-sm text-gray-500">Cargando...</div>
+        </div>
+      }>
+        <Sections onLinkClick={() => setIsOpen(false)} />
+      </Suspense>
 
       {/* Overlay oscuro */}
       {isOpen && (
