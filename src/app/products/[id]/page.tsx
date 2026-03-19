@@ -84,8 +84,8 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
       <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <div className="mb-8">
-          <Link 
-            href="/products" 
+          <Link
+            href="/products"
             className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -103,18 +103,16 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
                   </div>
                 )}
-                <Image
+                <img
                   src={product.imagen || "/fallback.jpg"}
                   alt={product.nombre}
-                  fill
-                  className={`object-cover transition-opacity duration-300 ${
-                    imageLoading ? 'opacity-0' : 'opacity-100'
-                  }`}
+                  className={`object-cover transition-opacity duration-300 ${imageLoading ? 'opacity-0' : 'opacity-100'
+                    }`}
                   onLoad={() => setImageLoading(false)}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
-              
+
 
             </div>
 
@@ -169,9 +167,9 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
                 )}
               </div>
 
-            
 
- 
+
+
             </div>
           </div>
         </div>

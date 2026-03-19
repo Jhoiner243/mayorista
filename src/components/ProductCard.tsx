@@ -75,7 +75,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
       {/* IMAGE SECTION */}
       <Link href={`/products/${product.id}`} className="block">
         <div className="relative aspect-[2.4/3] overflow-hidden bg-muted/30">
-          <Image
+          <img
             width={400}
             height={500}
             src={product.imagen.replace(
@@ -177,9 +177,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
                 onMouseLeave={handleMouseUp}
                 onWheel={handleWheel}
               >
-                <Image
-                  fill
-                  priority
+                <img
                   src={product.imagen.replace(
                     "/upload/",
                     "/upload/q_auto,f_auto,e_improve/"
