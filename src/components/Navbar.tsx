@@ -1,7 +1,6 @@
 "use client";
 
 import { Home, Menu, X } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import Sections from "./sections";
@@ -30,12 +29,6 @@ const Navbar = () => {
       {/* Barra principal */}
       <nav className="w-full flex items-center justify-between px-4 sm:px-6 md:px-8 mx-auto max-w-6xl py-3">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-          <Image src="/logo.png" alt="La guaca del reloj" width={36} height={36} priority />
-          <span className="hidden sm:block text-sm font-semibold tracking-wide">
-            La guaca del reloj
-          </span>
-        </Link>
 
         {/* Desktop: iconos derechos */}
         <div className="hidden md:flex items-center gap-6">
@@ -84,10 +77,6 @@ const Navbar = () => {
       >
         {/* Cabecera del drawer */}
         <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
-          <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-            <Image src="/logo.png" alt="La guaca del reloj" width={28} height={28} />
-            <span className="text-sm font-semibold tracking-wide">La guaca del reloj</span>
-          </Link>
           <button
             onClick={() => setIsOpen(false)}
             className="p-1.5 rounded-md hover:bg-gray-100 transition-colors"
